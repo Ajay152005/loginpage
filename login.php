@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
     if (password_verify($password, $hashed_password)) {
         // Password matches, start session and redirect to welcome page
         $_SESSION['username'] = $username;
-        header("Location: welcome.php");
+        header("Location: libhome.html");
         exit();
     } else {
         echo "Invalid username or password";
