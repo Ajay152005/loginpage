@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,6 +213,33 @@
     link.click(); // Programmatically click the link to trigger the download
 }
 
+        function borrowBook(username, bookName) {
+            // Create a form element
+            var form = document.createElement('form');
+            form.action = 'borrow_book.php'; // Set the action attribute
+            form.method = 'post'; // Set the method attribute
+
+            // Create hidden input fields for username and book name
+            var usernameInput = document.createElement('input');
+            usernameInput.type = 'hidden';
+            usernameInput.name = 'username';
+            usernameInput.value = username;
+
+            var bookNameInput = document.createElement('input');
+            bookNameInput.type = 'hidden';
+            bookNameInput.name = 'book_name';
+            bookNameInput.value = bookName;
+
+            // Append input fields to the form
+            form.appendChild(usernameInput);
+            form.appendChild(bookNameInput);
+
+            // Append form to the document body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+        }
     </script>
 </body>
 </html>
