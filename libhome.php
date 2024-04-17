@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +115,11 @@ session_start();
                     <div class="book-details">
                         <div class="book-title">a_brief_history_of_time</div>
                         <div class="book-author">stephen_hawking</div>
-                        <button class="borrow-button" onclick="downloadPDF('stephen_hawking_a_brief_history_of_time.pdf')">Borrow</button>
+                        <form action="borrow_book.php" method="post">
+                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
+                            <input type="hidden" name="book_name" value="a_brief_history_of_time"> <!-- Change "a_brief_history_of_time" to the actual book name -->
+                            <button class="borrow-button" onclick="downloadPDF('stephen_hawking_a_brief_history_of_time.pdf')">Borrow</button>
+                        </form>
                     </div>
                 </div>
                 <div class="book-card">
@@ -131,6 +136,7 @@ session_start();
                         <div class="book-title">he Elegant Universe</div>
                         <div class="book-author">Brian Green</div>
                         <button class="borrow-button" onclick="downloadPDF('The Elegant Universe - Brian Green.pdf')">Borrow</button>
+
                     </div>
                 </div>
 
@@ -212,34 +218,6 @@ session_start();
     link.target = '_blank'; // Open the link in a new tab/window
     link.click(); // Programmatically click the link to trigger the download
 }
-
-        function borrowBook(username, bookName) {
-            // Create a form element
-            var form = document.createElement('form');
-            form.action = 'borrow_book.php'; // Set the action attribute
-            form.method = 'post'; // Set the method attribute
-
-            // Create hidden input fields for username and book name
-            var usernameInput = document.createElement('input');
-            usernameInput.type = 'hidden';
-            usernameInput.name = 'username';
-            usernameInput.value = username;
-
-            var bookNameInput = document.createElement('input');
-            bookNameInput.type = 'hidden';
-            bookNameInput.name = 'book_name';
-            bookNameInput.value = bookName;
-
-            // Append input fields to the form
-            form.appendChild(usernameInput);
-            form.appendChild(bookNameInput);
-
-            // Append form to the document body
-            document.body.appendChild(form);
-
-            // Submit the form
-            form.submit();
-        }
     </script>
 </body>
 </html>

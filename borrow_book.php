@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$db_host = "localhost";
+$db_host = "localhost:3307";
 $db_user = "ajay";
 $db_password = "ajay15";
 $db_name = "ajay";
@@ -38,6 +38,7 @@ $sql = "INSERT INTO borrow_history (username, book_name, borrow_time, return_tim
 if (mysqli_query($conn, $sql)) {
     // Borrow information successfully inserted
     echo "Book borrowed successfully!";
+    header("location: libhome.php");
 } else {
     // Error inserting borrow information
     echo "Error inserting borrow information: " . mysqli_error($conn);
